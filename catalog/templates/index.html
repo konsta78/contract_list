@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1>Отдел главного механика и электромеханических устройств ОАО "Метрострой"</h1>
+<h2>Договоры, заключенные ОАО "Метрострой"</h2>
+<hr/>
+<h3>В наличии следующая информация:</h3>
+
+  <ul>
+    <li><strong>Договоры:</strong> {{ num_contracts }}</li>
+    <li><strong>Организации:</strong> {{ num_companys }}</li>
+    <li><strong>Объекты строительства:</strong> {{ num_objects }}</li>
+    <li><strong>Подписанные договоры:</strong> {{ num_contracts_signed }}</li>
+  </ul>
+
+{% endblock %}

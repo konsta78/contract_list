@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Список договоров</h1>
+
+    {% if contract_list %}
+    <ul>
+
+      {% for contract in contract_list %}
+      <li>
+        <a href="{{ contract.get_absolute_url }}">{{ contract.number }}</a> ({{contract.subject_of_contract}})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>Договоры отсутствуют</p>
+    {% endif %}       
+{% endblock %}
