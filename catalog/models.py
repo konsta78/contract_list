@@ -1,6 +1,6 @@
 from django.db import models
 from django.urls import reverse # Используется для генерации URL путем изменения шаблонов URL
-from django.utils import timezone # подключение библиотеки для работы с временными зонами (DateTime)
+from django.utils import dateformat
 
 # Мои модели здесь!
 
@@ -94,13 +94,14 @@ class Contract(models.Model):
     # Номер и дата служебной записки
     num_work_note = models.IntegerField(null=True, blank=True, verbose_name="Номер служебной записки")
     date_work_note = models.DateField(null=True, blank=True, verbose_name="Дата служебной записки")
-    publish = models.DateTimeField(default=timezone.now) # дата создания записи
+    publish = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания записи") # дата создания записи (не видна в админке)
     
     # контактное лицо в Договорном отделе
     person_name = (
-        ('1', 'Павлышко Е. С.'),
-        ('2', 'Пуленкова Р. Н.'),
-        ('3', 'Бочков М. А.'),
+        ('1', 'Павлышко Екатерина Сергеевна'),
+        ('2', 'Пуленкова Римма Николаевна'),
+        ('3', 'Бочков Максим Александрович'),
+        ('4', 'Великородная Оксана Леонидовна')
     )
     person = models.CharField(max_length=20, choices=person_name, default='Павлышко Е. С.', verbose_name="Контактное лицо ДО")
     

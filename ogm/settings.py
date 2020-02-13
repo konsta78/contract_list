@@ -104,16 +104,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'Europe/Moscow'
 
-USE_I18N = True
+USE_I18N = True #перевод основных элементов в django-admin и при выводе дат в шаблонах
 
-USE_L10N = True
+USE_L10N = True #джанга буде пытаться определить системную локаль пользователя, на основе заголовков Accept-Language, посылаемых браузером
 
 USE_TZ = True
 
+DATE_FORMAT = "d E Y" #пример вывода даты: 13 ноября 2019
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

@@ -8,21 +8,18 @@
   <p><strong>Предмет договора:</strong> {{ contract.subject_of_contract }}</p> 
   <p><strong>Срок действия договора:</strong> {{ contract.contract_time }}</p>  
   <p><strong>Дата заключения договора:</strong> {{ contract.date_of_conclusion }}</p>  
-  <p><strong>Статус:</strong> {{ contract.contract_status }}</p>  
+  <p><strong>Статус:</strong> {{ contract.get_contract_status_display }}</p>  
   <p><strong>Объект строительства:</strong> {{ contract.constr_object }}</p>  
-  <p><strong>Номер и дата служебной записки:</strong> {{ contract.num_work_note }} от {{ contract.date_work_note }}</p> 
-  <p><strong>Контактное лицо в ДО:</strong> {{ contract.person }}</p>  
+  <p><strong>Номер и дата служебной записки:</strong> № {{ contract.num_work_note }} от {{ contract.date_work_note }}</p> 
+  <p><strong>Контактное лицо в ДО:</strong> {{ contract.get_person_display }}</p>  
   <p><strong>Дата создания записи:</strong> {{ contract.publish }}</p> 
 
-  <!--<div style="margin-left:20px;margin-top:20px">
-    <h4>Copies</h4>
-
-    {% for copy in book.bookinstance_set.all %}
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Статус: </h4>
+    
     <hr>
-    <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'd' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
-    {% if copy.status != 'a' %}<p><strong>Due to be returned:</strong> {{copy.due_back}}</p>{% endif %}
-    <p><strong>Imprint:</strong> {{copy.imprint}}</p>
-    <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
-    {% endfor %}
-  </div>-->
+    <p class="{% if contract.contract_status == 's' %}text-success{% elif contract.contract_status == 'o' %}text-danger{% else %}text-warning{% endif %}">{{ contract.get_contract_status_display }}</p>
+    {% if contract.contract_status != 's' %}<p><strong>Не подписан (на подписании, аннулирован, расторгнут)</strong></p>{% endif %}
+        
+  </div>
 {% endblock %}
