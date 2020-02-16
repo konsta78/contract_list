@@ -19,7 +19,6 @@
     
     <hr>
     <p class="{% if contract.contract_status == 's' %}text-success{% elif contract.contract_status == 'o' %}text-danger{% else %}text-warning{% endif %}">{{ contract.get_contract_status_display }}</p>
-    {% if contract.contract_status != 's' %}<p><strong>Не подписан (на подписании, аннулирован, расторгнут)</strong></p>{% endif %}
         
   </div>
 {% endblock %}

@@ -29,3 +29,10 @@ class ContractListView(generic.ListView):
     
 class ContractDetailView(generic.DetailView):
     model = Contract
+
+# отображение класса Company
+class CompanyListView(generic.ListView):
+    model = Company
+
+class CompanyDetailView(generic.DetailView):
+    model = Company

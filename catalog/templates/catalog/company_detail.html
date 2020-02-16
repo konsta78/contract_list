@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Организация: {{ company.short_name }}</h1>
+
+  <p><strong>Полное наименование:</strong> {{ company.name }}</p>
+  <p><strong>Сокращенное наименование:</strong> {{ company.short_name }}</p>
+  <p><strong>Контактный телефон:</strong> {{ company.phone }}</p> 
+  
+{% endblock %}
