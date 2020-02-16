@@ -3,8 +3,10 @@
 {% block content %}
   <h1>Номер договора: {{ contract.number }}</h1>
 
-  <p><strong>Заказчик:</strong> <a href="">{{ contract.customer }}</a></p>
-  <p><strong>Исполнитель:</strong> {{ contract.executor }}</p>
+  <p><strong>Заказчик:</strong> <a href="{% url 'company-detail' contract.customer.pk %}">
+    {{ contract.customer }}</a></p>
+  <p><strong>Исполнитель:</strong> <a href="{% url 'company-detail' contract.executor.pk %}"> 
+    {{ contract.executor }}</a></p>
   <p><strong>Предмет договора:</strong> {{ contract.subject_of_contract }}</p> 
   <p><strong>Срок действия договора:</strong> {{ contract.contract_time }}</p>  
   <p><strong>Дата заключения договора:</strong> {{ contract.date_of_conclusion }}</p>  
