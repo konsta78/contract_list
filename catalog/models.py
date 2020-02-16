@@ -49,6 +49,9 @@ class ManagerPerson(models.Model):
     )
     manager_signature = models.CharField(max_length=17, choices=grounds_for_signature, default='charter', 
                                  verbose_name="Основание для подписи")
+
+    class Meta:
+        ordering = ["manager_position"] # сортировка по ФИО
     
     def __str__(self):
         """

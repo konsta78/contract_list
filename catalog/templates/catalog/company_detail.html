@@ -7,4 +7,17 @@
   <p><strong>Сокращенное наименование:</strong> {{ company.short_name }}</p>
   <p><strong>Контактный телефон:</strong> {{ company.phone }}</p> 
   
+  
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Подписанты:</h4>
+    <!--
+    Обращение к данным модели ManagerPerson. Вывод ФИО посредством обращения к полю manager_company (ForeignKey)
+    с установленным related_name - "Company_manager_company".
+    company.Company_manager_company.all - имя модели Company с прописной буквы.related_name поля manager_company 
+    -->
+    {% for person in company.Company_manager_company.all %}
+      <p><strong>{{ person.manager_name }}</strong>, {{ person.manager_position }}</p>
+    {% endfor %}
+  </div>
+
 {% endblock %}

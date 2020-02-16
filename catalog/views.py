@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Company, ConstructionObject, Contract
+from .models import Company, ConstructionObject, Contract, ManagerPerson
 
 def index(request):
     """
