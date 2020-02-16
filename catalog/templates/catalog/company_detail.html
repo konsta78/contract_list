@@ -6,8 +6,7 @@
   <p><strong>Полное наименование:</strong> {{ company.name }}</p>
   <p><strong>Сокращенное наименование:</strong> {{ company.short_name }}</p>
   <p><strong>Контактный телефон:</strong> {{ company.phone }}</p> 
-  
-  
+    
   <div style="margin-left:20px;margin-top:20px">
     <h4>Подписанты:</h4>
     <!--
@@ -17,6 +16,25 @@
     -->
     {% for person in company.Company_manager_company.all %}
       <p><strong>{{ person.manager_name }}</strong>, {{ person.manager_position }}</p>
+    {% endfor %}
+  </div>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Договоры (Заказчик): </h4>
+    <!--
+    Ссылка на уже созданое отображение информации по договорам
+    -->
+    {% for contract in company.Company_customer.all %}
+      <ol><a href="{{ contract.get_absolute_url }}"> {{ contract.number }} </a></ol>
+    {% endfor %}
+    <hr>
+
+    <h4>Договоры (Исполнитель): </h4>
+    <!--
+    Ссылка на уже созданое отображение информации по договорам
+    -->
+    {% for contract in company.Company_executor.all %}
+      <ol><a href="{{ contract.get_absolute_url }}"> {{ contract.number }} </a></ol>
     {% endfor %}
   </div>
 

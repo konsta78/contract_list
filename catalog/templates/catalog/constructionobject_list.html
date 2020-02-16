@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Объекты строительства: </h1>
+
+    {% if constructionobject_list %}
+    <ul>
+
+      {% for object in constructionobject_list %}
+      <li>
+        {{ object.get_line_display }}
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>Объекты строительства отсутствуют</p>
+    {% endif %}       
+{% endblock %}

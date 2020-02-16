@@ -166,7 +166,7 @@ class ConstructionObject(models.Model):
     }
     """
     class Meta:
-        ordering = ["line"] # сортировка объектов строительства по линии
+        ordering = ["-line"] # сортировка объектов строительства по линии
         
     def __str__(self):
         """
