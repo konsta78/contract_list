@@ -1,5 +1,12 @@
 from django.contrib import admin
-from .models import Company, Contract, ConstructionObject
+from .models import Company, Contract, ConstructionObject, ManagerPerson
+
+# класс отображения информации о подписанте
+
+class ManagerPersonAdmin(admin.ModelAdmin):
+    list_display = ('manager_name', 'manager_position', 'manager_company', 'manager_signature')
+    
+admin.site.register(ManagerPerson, ManagerPersonAdmin)
 
 # класс меняет отобращение информации о моделе "Contract"
 class ContractAdmin(admin.ModelAdmin):
@@ -11,7 +18,7 @@ admin.site.register(Contract, ContractAdmin)
 # регистрация класса CompanyAdmin посредством декоратора
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ('short_name', 'manager', 'manager_position', 'signature')
+    list_display = ('short_name', 'phone')
     
 # регистрация класса ConstructionObject
 @admin.register(ConstructionObject)

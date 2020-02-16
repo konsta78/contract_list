@@ -15,19 +15,8 @@ class Company(models.Model):
     # сокращенное наименование организации
     short_name = models.CharField(max_length=100, verbose_name="Сокращенное наименование")
     
-    # ФИО подписанта
-    manager = models.CharField(max_length=100, verbose_name="ФИО подписанта")
-    
-    # должность подписанта
-    manager_position = models.CharField(max_length=200, verbose_name="Должность подписанта")
-    
-    # основание для подписи (устав или доверенность)
-    grounds_for_signature = (
-        ('charter', 'Устав'), 
-        ('power_of_attorney', 'Доверенность')
-    )
-    signature = models.CharField(max_length=17, choices=grounds_for_signature, default='charter', 
-                                 verbose_name="Основание для подписи")
+    # телефон организации
+    phone = models.CharField(max_length=100, verbose_name="Контактный телефон", default=" ")
     
     class Meta:
         ordering = ["short_name"] # сортировка организаций по сокращенному наименованию
@@ -43,6 +32,29 @@ class Company(models.Model):
         Возвращает URL с подродбным описанием Организации
         """
         return reverse('company-detail', args=[str(self.id)])
+    
+class ManagerPerson(models.Model):
+    """
+    Описание модели подписанта по договору:
+    ФИО, должность, принадлежность к организации, основание для подписи, рабочий телефон
+    """
+    manager_name = models.CharField(max_length=100, verbose_name="ФИО подписанта")
+    manager_position = models.CharField(max_length=200, verbose_name="Должность подписанта")
+    manager_company = models.ForeignKey('Company', on_delete=models.SET_NULL, null=True, verbose_name="Организация",
+                                 related_name = 'Company_manager_company')
+    
+    grounds_for_signature = (
+        ('charter', 'Устав'), 
+        ('power_of_attorney', 'Доверенность')
+    )
+    manager_signature = models.CharField(max_length=17, choices=grounds_for_signature, default='charter', 
+                                 verbose_name="Основание для подписи")
+    
+    def __str__(self):
+        """
+        Возвращает ФИО подписанта
+        """
+        return self.manager_name
     
 class Contract(models.Model):
     """
