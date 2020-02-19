@@ -25,7 +25,9 @@
     Ссылка на уже созданое отображение информации по договорам
     -->
     {% for contract in company.Company_customer.all %}
-      <ol><a href="{{ contract.get_absolute_url }}"> {{ contract.number }} </a></ol>
+      <ol><a href="{{ contract.get_absolute_url }}"> {{ contract.number }} </a>, 
+          {{ contract.executor }}
+      </ol>
     {% endfor %}
     <hr>
 
@@ -34,7 +36,9 @@
     Ссылка на уже созданое отображение информации по договорам
     -->
     {% for contract in company.Company_executor.all %}
-      <ol><a href="{{ contract.get_absolute_url }}"> {{ contract.number }} </a></ol>
+      <ol><a href="{{ contract.get_absolute_url }}"> {{ contract.number }} </a>,
+          {{ contract.customer }}
+      </ol>
     {% endfor %}
   </div>
 

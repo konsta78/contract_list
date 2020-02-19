@@ -8,7 +8,7 @@
 
       {% for object in constructionobject_list %}
       <li>
-        {{ object.get_line_display }}
+        <a href="{{ object.get_absolute_url }}"> {{ object.get_line_display }} </a>
       </li>
       {% endfor %}
 

@@ -40,3 +40,6 @@ class CompanyDetailView(generic.DetailView):
 # отображение класса ConstructionObject
 class ConstructionObjectListView(generic.ListView):
     model = ConstructionObject
+
+class ConstructionObjectDetailView(generic.DetailView):
+    model = ConstructionObject

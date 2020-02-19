@@ -173,3 +173,9 @@ class ConstructionObject(models.Model):
         Возвращает название объекта строительства по линии (line)
         """
         return self.line
+
+    def get_absolute_url(self):
+        """
+        Возвращает URL с подродбным описанием объекта строительства
+        """
+        return reverse('object-detail', args=[str(self.id)])

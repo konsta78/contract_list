@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Объекты строительства:</h1>
+
+  <p><strong>Наименование объекта строительства:</strong> {{ object.get_line_display }} </p>
+  <hr>
+  <p><strong>Банковские реквизиты:</strong> {{ object.requisites }} </p>
+
+  
+{% endblock %}

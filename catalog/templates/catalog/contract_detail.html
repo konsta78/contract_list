@@ -8,11 +8,20 @@
   <p><strong>Исполнитель:</strong> <a href="{% url 'company-detail' contract.executor.pk %}"> 
     {{ contract.executor }}</a></p>
   <p><strong>Предмет договора:</strong> {{ contract.subject_of_contract }}</p> 
-  <p><strong>Срок действия договора:</strong> {{ contract.contract_time }}</p>  
-  <p><strong>Дата заключения договора:</strong> {{ contract.date_of_conclusion }}</p>  
+  <p><strong>Срок действия договора:</strong>
+    <span class="{% if not contract.contract_time %}text-danger{% endif %}">
+      {% if not contract.contract_time %} Не указан {% else %} {{ contract.contract_time }} {% endif %}
+    </span></p>  
+  <p><strong>Дата заключения договора:</strong>
+    <span class="{% if not contract.date_of_conclusion %}text-danger{% endif %}">
+      {% if not contract.date_of_conclusion %} Не указана {% else %} {{ contract.date_of_conclusion }} {% endif %}
+    </span></p>  
   <p><strong>Статус:</strong> {{ contract.get_contract_status_display }}</p>  
   <p><strong>Объект строительства:</strong> {{ contract.constr_object }}</p>  
-  <p><strong>Номер и дата служебной записки:</strong> № {{ contract.num_work_note }} от {{ contract.date_work_note }}</p> 
+  <p><strong>Номер и дата служебной записки:</strong> 
+    <span class="{% if not contract.num_work_note %}text-danger{% endif %}">
+    {% if not contract.num_work_note %} Не указана {% else %} № {{ contract.num_work_note }} от {{ contract.date_work_note }} {% endif %}
+    </span></p> 
   <p><strong>Контактное лицо в ДО:</strong> {{ contract.get_person_display }}</p>  
   <p><strong>Дата создания записи:</strong> {{ contract.publish }}</p> 
 
