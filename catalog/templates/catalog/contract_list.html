@@ -1,15 +1,29 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>Список договоров</h1>
+    <h1>Список договоров: </h1>
 
     {% if contract_list %}
     <ul>
+      <h2>Подписанные договоры:</h2>
 
       {% for contract in contract_list %}
-      <li>
-        <a href="{{ contract.get_absolute_url }}">{{ contract.number }}</a> ({{contract.subject_of_contract}})
-      </li>
+        {% if contract.contract_status == 's' %}
+        <li>
+          <a href="{{ contract.get_absolute_url }}">{{ contract.number }}</a> ({{contract.subject_of_contract}})
+        </li>
+        {% endif %}
+      {% endfor %}
+     
+      <hr>
+      <h2>Договоры на подписании:</h2>
+
+      {% for contract in contract_list %}
+        {% if contract.contract_status == 'o' %}
+        <li>
+          <a href="{{ contract.get_absolute_url }}">{{ contract.number }}</a> ({{contract.subject_of_contract}})
+        </li>
+        {% endif %}
       {% endfor %}
 
     </ul>
