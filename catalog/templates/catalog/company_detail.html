@@ -26,7 +26,8 @@
     -->
     {% for contract in company.Company_customer.all %}
       <ol><a href="{{ contract.get_absolute_url }}"> {{ contract.number }} </a>, 
-          {{ contract.executor }}
+          ({{contract.subject_of_contract}}), 
+          <a href="{% url 'company-detail' contract.executor.pk %}"> {{ contract.executor }} </a>
       </ol>
     {% endfor %}
     <hr>
@@ -37,7 +38,8 @@
     -->
     {% for contract in company.Company_executor.all %}
       <ol><a href="{{ contract.get_absolute_url }}"> {{ contract.number }} </a>,
-          {{ contract.customer }}
+          ({{contract.subject_of_contract}}),
+          <a href="{% url 'company-detail' contract.customer.pk %}"> {{ contract.customer }} </a>
       </ol>
     {% endfor %}
   </div>

@@ -2,6 +2,8 @@ from django.shortcuts import render
 
 from .models import Company, ConstructionObject, Contract, ManagerPerson
 
+import datetime
+
 def index(request):
     """
     Функция отображения для домашней страницы сайта.
@@ -12,13 +14,15 @@ def index(request):
     num_objects=ConstructionObject.objects.all().count()
     # Подписанные договора (статус = 's') - signed
     num_contracts_signed=Contract.objects.filter(contract_status__exact='s').count()
-    
+    # Текущая дата в формате: день.месяц.год
+    date_now = datetime.datetime.now().strftime("%d.%m.%Y")
     # Отрисовка HTML-шаблона index.html с данными внутри переменной контекста context
     return render(
         request,
         'index.html',
         context={'num_contracts':num_contracts,'num_companys':num_companys,
-                 'num_objects':num_objects,'num_contracts_signed':num_contracts_signed},
+                 'num_objects':num_objects,'num_contracts_signed':num_contracts_signed, 
+                 'date_now':date_now},
     )
 
 # отображение класса contract
