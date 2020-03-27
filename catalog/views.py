@@ -33,6 +33,16 @@ class ContractListView(generic.ListView):
     
 class ContractDetailView(generic.DetailView):
     model = Contract
+    def get_object(self):
+        # Call the superclass
+        object = super(ContractDetailView, self).get_object()
+        # вычисление времени нахождения договора в работе (кол-во дней)
+        if object.date_work_note:
+            object.work_time = datetime.datetime.now().date() - object.date_work_note # если есть дата СЗ
+        else:
+            object.work_time = datetime.datetime.now().date() - object.publish.date() # если нет даты СЗ (от даты записи)
+        object.save()
+        return object
 
 # отображение класса Company
 class CompanyListView(generic.ListView):
@@ -47,3 +57,21 @@ class ConstructionObjectListView(generic.ListView):
 
 class ConstructionObjectDetailView(generic.DetailView):
     model = ConstructionObject
+"""
+from django.views.generic import DetailView
+from django.utils import timezone
+from books.models import Author
+
+class AuthorDetailView(DetailView):
+
+    queryset = Author.objects.all()
+
+    def get_object(self):
+        # Call the superclass
+        object = super(AuthorDetailView, self).get_object()
+        # Record the last accessed date
+        object.last_accessed = timezone.now()
+        object.save()
+        # Return the object
+        return object
+        """

@@ -24,8 +24,7 @@
     </span></p> 
   <p><strong>Контактное лицо в ДО:</strong> {{ contract.get_person_display }}</p>  
   <p><strong>Дата создания записи:</strong> {{ contract.publish }}</p>
-  <p><strong>Время в работе: </strong> {% if not contract.date_work_note %} Не определено 
-    {% else %} {{ contract.date_work_note }} {% endif %}</p> 
+  <p><strong>Время в работе (дней): </strong> {{ contract.work_time.days }} дней</p> 
 
   <div style="margin-left:20px;margin-top:20px">
     <h4>Статус: </h4>
